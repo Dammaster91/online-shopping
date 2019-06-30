@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url var="css" value="/resources/css" />
@@ -41,7 +40,7 @@
 		<%@include file="./shared/navbar.jsp"%>
 		<!-- Page Content -->
 		<div class="content">
-			<!--Load only wher user clicks Home  -->
+			<!--Load only when user clicks Home  -->
 			<c:if test="${userClickHome==true}">
 				<%@include file="home.jsp"%>
 			</c:if>
@@ -55,6 +54,13 @@
 			<c:if test="${userClickContact==true}">
 				<%@include file="contact.jsp"%>
 			</c:if>
+			
+			<!--Load only when user clicks contact  -->
+			<c:if test="${userClickAllProducts==true or userClickCategoryProducts==true }">
+				<%@include file="listProducts.jsp"%>
+			</c:if>
+			
+			
 
 		</div>
 		<!-- Footer -->

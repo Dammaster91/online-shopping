@@ -13,6 +13,7 @@
    ">
    
   <context:component-scan base-package="san.com.onlineshopping.controller"/>
+  <context:component-scan base-package="san.com.shoppingbackend.daoimpl"/>
  <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
  
  <property name="prefix" value="/WEB-INF/views/" />
