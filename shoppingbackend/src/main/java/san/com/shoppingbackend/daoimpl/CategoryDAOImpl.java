@@ -3,54 +3,113 @@ package san.com.shoppingbackend.daoimpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.AliasToBeanResultTransformer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import san.com.shoppingbackend.dao.CategoryDAO;
 import san.com.shoppingbackend.dto.Category;
+import san.com.shoppingbackend.dto.Product;
 
 @Repository
+@Transactional
 public class CategoryDAOImpl implements CategoryDAO {
+
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	private static List<Category> categories = new ArrayList<Category>();
 
-	static {
-		Category category = new Category();
-		category.setId(1);
-		category.setName("TV");
-		category.setDescription("some description about TV");
-		category.setImageURL("CAT_1.png");
-		categories.add(category);
-
-		category = new Category();
-		category.setId(2);
-		category.setName("MOBILE");
-		category.setDescription("some description about MOBILE");
-		category.setImageURL("CAT_2.png");
-		categories.add(category);
-
-		category = new Category();
-		category.setId(3);
-		category.setName("LAPTOP");
-		category.setDescription("some description about LAPTOP");
-		category.setImageURL("CAT_3.png");
-		categories.add(category);
-	}
-
 	@Override
 	public List<Category> list() {
-		// TODO Auto-generated method stub
-		return categories;
+		System.out.println("control in getStudentDetailsList daoimpl");
+
+		Session session = sessionFactory.openSession();
+		System.out.println(session);
+
+		ProjectionList pList = Projections.projectionList();
+		pList.add(Projections.property("id"), "id");
+		pList.add(Projections.property("name"), "name");
+		pList.add(Projections.property("description"), "description");
+		pList.add(Projections.property("imageURL"), "imageURL");
+		pList.add(Projections.property("isActive"), "isActive");
+
+		Criteria criteria = session.createCriteria(Category.class).setProjection(pList);
+
+		List<Category> listStdentRegDto = criteria
+				.setResultTransformer(new AliasToBeanResultTransformer(Category.class)).list();
+
+		return listStdentRegDto;
 	}
 
 	@Override
 	public Category get(int id) {
-		// enchanced for loop
-		for (Category category : categories) {
-			if (category.getId() == id) {
-				return category;
+		Session session = sessionFactory.openSession();
+		System.out.println(session);
+
+		Criteria criteria = session.createCriteria(Category.class).add(Restrictions.eq("id", id));
+
+		Category result = (Category) criteria.uniqueResult();
+		if (result != null) {
+			Category genre = (Category) result;
+			System.out.println("Genre = " + genre.getName());
+		}
+
+		return result;
+
+	}
+
+	@Override
+
+	public boolean add(Category category) {
+		Session session = null;
+		Transaction transaction = null;
+		Integer id = 0;
+		try {
+			session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			transaction.begin();
+
+			id = (Integer) session.save(category);
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
 			}
 		}
-		return null;
+		if (id != 0) {
+			return true;
+		} else {
+			return false;
+
+		}
+
+	}
+
+	@Override
+	public boolean update(Category category) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(Category category) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

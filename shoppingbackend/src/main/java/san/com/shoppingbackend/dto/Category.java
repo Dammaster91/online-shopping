@@ -1,13 +1,26 @@
 package san.com.shoppingbackend.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Category {
 
 	/* private fields */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String description;
+	
+	@Column(name = "image_url")
 	private String imageURL;
-	private boolean active = true;
+	
+	@Column(name = "active")
+	private boolean isActive;
 
 	public int getId() {
 		return id;
@@ -42,11 +55,13 @@ public class Category {
 	}
 
 	public boolean isActive() {
-		return active;
+		return isActive;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
+
+	
 
 }

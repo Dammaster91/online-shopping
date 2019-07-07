@@ -21,12 +21,16 @@
 <title>Online Shopping -${title}</title>
 <script type="text/javascript">
 	window.menu = '${title}'
+	window.contextRoot='${contextRoot}'
 </script>
 <!-- Bootstrap core CSS -->
-<link href="${css}/bootstrap.min.css" rel="stylesheet">
-
+<link href="${css}/bootstrap.css" rel="stylesheet"> 
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap-readabletheam.css" rel="stylesheet">
+<link href="${css}/bootstrap-theme.css" rel="stylesheet">
+
+<!-- Bootstrap DataTable CSS -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="${css}/myapp.css" rel="stylesheet">
@@ -60,14 +64,26 @@
 				<%@include file="listProducts.jsp"%>
 			</c:if>
 			
+			<!--Load only when user clicks view product  -->
+			<c:if test="${userClickShowProduct==true}">
+				<%@include file="singleProduct.jsp"%>
+			</c:if>
+			
 			
 
 		</div>
 		<!-- Footer -->
-		<%@include file="./shared/footer.jsp"%>
+		 <%@include file="./shared/footer.jsp"%> 
+		
 		<!-- Bootstrap core JavaScript -->
+		
 		<script src="${js}/jquery.js"></script>
 		<script src="${js}/bootstrap.min.js"></script>
+		<!-- Datatable -->
+		<script src="${js}/jquery.dataTables.js"></script>
+		<script src="${js}/dataTables.bootstrap4.js"></script>
+		
+		
 		<script src="${js}/myapp.js"></script>
 	</div>
 </body>
