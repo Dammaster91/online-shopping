@@ -47,7 +47,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>4.2.1.RELEASE</version>
+			<version>4.3.19.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -65,7 +65,7 @@
           <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>4.2.1.RELEASE</version>
+			<version>4.3.19.RELEASE</version>
 			<exclusions>
 			<exclusion>
 			<groupId>common-logging</groupId>
