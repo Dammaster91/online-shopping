@@ -35,33 +35,56 @@
 					</c:if>
 				</div>
 			</div>
-			<div class="col-xs-12">
-				<table id="productListTable"
-					class="table table-striped table-borderd">
-					<thead>
-						<tr>
-						    <th></th>
-							<th>Name</th>
-							<th>Brand</th>
-							<th>Price</th>
-							<th>Qty. Available</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tfoot>
-						<tr>
-						    <th></th>
-							<th>Name</th>
-							<th>Brand</th>
-							<th>Price</th>
-							<th>Qty. Available</th>
-							<th></th>
-						</tr>
-					</tfoot>
-				</table>
-			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="container-fluid">
+						<div class="table-responsive">
+							<table id="productListTable"
+								class="table table-striped table-borderd">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Name</th>
+										<th>Brand</th>
+										<th>Price</th>
+										<th>Qty. Available</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th></th>
+										<th>Name</th>
+										<th>Brand</th>
+										<th>Price</th>
+										<th>Qty. Available</th>
+										<th></th>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</div>
 
+
+
+				</div>
+			</div>
 		</div>
 	</div>
 
 </div>
+<!-- <div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      dialog body
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        Hello world!
+      </div>
+      dialog buttons
+      <div class="modal-footer"><button type="button" class="btn btn-primary">OK</button></div>
+    </div>
+  </div>
+</div> -->
+
+<!-- sometime later, probably inside your on load event callback -->

@@ -10,5 +10,9 @@
 
 		 <mapping class="san.com.shoppingbackend.dto.Category" /> 
 	     <mapping class="san.com.shoppingbackend.dto.Product" /> 
+	     <mapping class="san.com.shoppingbackend.dto.User" /> 
+	     <mapping class="san.com.shoppingbackend.dto.Cart" /> 
+	     <mapping class="san.com.shoppingbackend.dto.Address" /> 
+	     <mapping class="san.com.shoppingbackend.dto.CartLine" /> 
 	</session-factory>
 </hibernate-configuration>

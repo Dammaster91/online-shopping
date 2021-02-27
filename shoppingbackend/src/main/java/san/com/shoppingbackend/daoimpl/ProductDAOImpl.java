@@ -6,7 +6,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -63,20 +62,15 @@ public class ProductDAOImpl implements ProductDAO {
 
 	public boolean add(Product product) {
 		Session session = null;
-		Transaction transaction = null;
 		Integer id = 0;
 		try {
+			product.setViews(0);
+			product.setPurchases(0);
 			session = sessionFactory.openSession();
-			transaction = session.beginTransaction();
-			transaction.begin();
-
 			id = (Integer) session.save(product);
 
-			transaction.commit();
 		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
+
 			e.printStackTrace();
 		} finally {
 			if (session != null) {
@@ -105,6 +99,15 @@ public class ProductDAOImpl implements ProductDAO {
 		System.out.println("Object Updated successfully.....!!");
 		session.close();
 		return true;
+
+		/*
+		 * String hql = "UPDATE Product set active = :active " +
+		 * "WHERE id = :id"; Query query = session.createQuery(hql);
+		 * query.setParameter("id", product.getId());
+		 * query.setParameter("active", product.isActive()); int result =
+		 * query.executeUpdate(); System.out.println("Rows affected: " +
+		 * result);
+		 */
 	}
 
 	@Override
@@ -113,7 +116,7 @@ public class ProductDAOImpl implements ProductDAO {
 			product.setActive(false);
 			return this.update(product);
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		return false;
 	}

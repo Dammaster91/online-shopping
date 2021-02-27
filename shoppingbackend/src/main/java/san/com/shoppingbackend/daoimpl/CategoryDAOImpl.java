@@ -70,6 +70,33 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Override
 
 	public boolean add(Category category) {
+
+		Session session = null;
+		Integer id = 0;
+		try {
+			
+			session = sessionFactory.openSession();
+			id = (Integer) session.save(category);
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		} finally {
+			if (session != null) {
+				session.close();
+			}
+		}
+		if (id != 0) {
+			return true;
+		} else {
+			return false;
+
+		}
+
+	
+		
+		
+		/*
 		Session session = null;
 		Transaction transaction = null;
 		Integer id = 0;
@@ -98,7 +125,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 		}
 
-	}
+	*/}
 
 	@Override
 	public boolean update(Category category) {
