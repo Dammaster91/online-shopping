@@ -10,14 +10,25 @@
 		
 	    http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context.xsd">
-	<beans:bean id="dataSource"
+		
+	<!-- <beans:bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="org.postgresql.Driver" />
 		<beans:property name="url"
 			value="jdbc:postgresql://127.0.0.1:5432/myProjects" />
 		<beans:property name="username" value="postgres" />
 		<beans:property name="password" value="root" />
+	</beans:bean> -->
+	
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="org.h2.Driver" />
+		<beans:property name="url"
+			value="jdbc:h2:tcp://localhost/~/test" />
+		<beans:property name="username" value="sa" />
+		<beans:property name="password" value="" />
 	</beans:bean>
+	
 	<beans:bean id="passwordEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 

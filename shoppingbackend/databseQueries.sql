@@ -25,9 +25,8 @@ role varchar(50),
 enabled boolean,
 password varchar(50),
 email varchar(50),
-contact_number varchar(50)
+contact_number varchar(50),
 constraint pk_user_id primary key(id)
-
 );
 
 
@@ -108,7 +107,7 @@ id serial,
 user_id integer,
 grand_total numeric,
 cart_lines integer,
-constraint pk_cart_user_id FOREIGN KEY (user_id) REFERENCES user_details(id)
+constraint pk_cart_user_id FOREIGN KEY (user_id) REFERENCES user_details(id),
 constraint pk_cart_id primary key(id)
 
 );

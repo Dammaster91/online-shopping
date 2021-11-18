@@ -6,8 +6,8 @@
 	<!-- Configuring front-controller -->
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<!-- For throwing exception -->
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	  	<!-- For throwing exception -->
 		<init-param>
 			<param-name>throwExceptionIfNoHandlerFound</param-name>
 			<param-value>true</param-value>
@@ -19,10 +19,10 @@
 		</multipart-config>
 	</servlet>
 
-	<servlet-mapping>
-		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
+	 <servlet-mapping>
+ 	<servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
 
 	<!-- -->
 	<listener>
